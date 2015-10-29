@@ -438,7 +438,7 @@
 				stop = function () {
 					clear();
 
-					D.unbind('.player');
+					$('body').unbind('.player');
 
 					F.player.isActive = false;
 
@@ -448,9 +448,9 @@
 					if (F.current && (F.current.loop || F.current.index < F.group.length - 1)) {
 						F.player.isActive = true;
 
-						D.bind({
+						$('body').bind({
+							'afterShow.player onUpdate.player'   : set,
 							'onCancel.player beforeClose.player' : stop,
-							'onUpdate.player'   : set,
 							'beforeLoad.player' : clear
 						});
 
@@ -761,7 +761,7 @@
 				});
 			}
 
-			D.trigger(event);
+			$.event.trigger(event + '.fb');
 		},
 
 		isImage: function (str) {
